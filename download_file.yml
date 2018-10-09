@@ -1,6 +1,6 @@
 ---
   - name: Download file from Artifactory and copy to ec2 instance
-    hosts: localhost
+    #hosts: localhost
     connection: local
     gather_facts: False
     become: true
