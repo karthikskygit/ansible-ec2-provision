@@ -9,15 +9,16 @@
       application_artifact: StrutsLoginEx.war
       source_path: /opt/artifactory_packages/
       dest_path: /usr/share/tomcat/webapps/
-  - name: download artifact from artifary
-    get_url:
-      url: "{{ artifactory_url }}{{ application_artifact}}"
-      dest: "{{ source_path }}"
-  - name: copy file to tomcat folder
-    copy:
-      src: "{{ source_path }}{{ application_artifact }}"
-      dest: "{{ dest_path }}{{ application_artifact }}"
-      owner: tomcat
-      owner: tomcat
-      mode: 0755
+    tasks:
+      - name: download artifact from artifary
+        get_url:
+          url: "{{ artifactory_url }}{{ application_artifact}}"
+          dest: "{{ source_path }}"
+      - name: copy file to tomcat folder
+        copy:
+          src: "{{ source_path }}{{ application_artifact }}"
+          dest: "{{ dest_path }}{{ application_artifact }}"
+          owner: tomcat
+          group: tomcat
+          mode: 0755
 
