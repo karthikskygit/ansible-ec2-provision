@@ -1,0 +1,23 @@
+---
+  - name: Download file from Artifactory and copy to ec2 instance
+    hosts: localhost
+    connection: local
+    gather_facts: False
+    become: true
+    vars:
+      artifactory_url: http://13.250.14.248:8081/artifactory/WebappJava/
+      application_artifact: StrutsLoginEx.war
+      source_path: /opt/artifactory_packages/
+      dest_path: /usr/share/tomcat/webapps/
+  - name: download artifact from artifary
+    get_url:
+      url: "{{ artifactory_url }}""{{ application_artifact}}"
+      dest: "{{ source_path }}"
+  - name: copy file to tomcat folder
+    copy:
+      src: "{{ source_path }}""{{ application_artifact }}"
+      dest: "{{ dest_path }}""{{ application_artifact }}"
+      owner: tomcat
+      owner: tomcat
+      mode: 0755
+
