@@ -11,12 +11,12 @@
       dest_path: /usr/share/tomcat/webapps/
   - name: download artifact from artifary
     get_url:
-      url: "{{ artifactory_url }}""{{ application_artifact}}"
+      url: "{{ artifactory_url }}{{ application_artifact}}"
       dest: "{{ source_path }}"
   - name: copy file to tomcat folder
     copy:
-      src: "{{ source_path }}""{{ application_artifact }}"
-      dest: "{{ dest_path }}""{{ application_artifact }}"
+      src: "{{ source_path }}{{ application_artifact }}"
+      dest: "{{ dest_path }}{{ application_artifact }}"
       owner: tomcat
       owner: tomcat
       mode: 0755
