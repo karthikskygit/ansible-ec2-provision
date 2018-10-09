@@ -17,7 +17,6 @@
       artifactory_url: http://13.250.14.248:8081/artifactory/WebappJava/
       application_artifact: StrutsLoginEx.war
       source_path: /opt/artifactory_packages/
-      dest_path: /usr/share/tomcat/webapps/
       # Task that will be used to Launch/Create an EC2 Instance
     tasks:
 
@@ -71,18 +70,3 @@
                       port=22
                       state=started
         with_items: '{{ ec2.instances }}'
-
-      - name: copy file to tomcat folder
-        copy:
-          src: "{{ source_path }}{{ application_artifact }}"
-          dest: "{{ dest_path }}{{ application_artifact }}"
-          owner: tomcat
-          group: tomcat
-          mode: 0755
-        with_items: '{{ ec2.instances }}'
-
-      - name: restart the instance
-        local_action: host={{ item.public_ip }}
-                      state=restarted
-        with_items: '{{ ec2.instances }}'
-
