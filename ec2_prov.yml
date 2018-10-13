@@ -1,6 +1,6 @@
 ---
   - name: Provision an EC2 Instance
-    hosts: localhost
+    hosts: local
     connection: local
     gather_facts: False
     become: true
@@ -9,14 +9,14 @@
     vars:
       instance_type: t2.micro
       security_group: Wipro_SG_Public_Webserver # Change the security group name here
-      image: ami-07f0c9caec5449629  # This is an AMI i created myself
+      image: ami-76144b0a  # RHEL AMI
       keypair: wipro_devops # This is one of my keys that i already have in AWS
       region: ap-southeast-1 # Change the Region
       count: 1
       Machine_Name: "{{ Machine_Name }}"
-      artifactory_url: http://13.250.14.248:8081/artifactory/WebappJava/
-      application_artifact: StrutsLoginEx.war
-      source_path: /opt/artifactory_packages/
+      #artifactory_url: http://13.250.14.248:8081/artifactory/WebappJava/
+      #application_artifact: StrutsLoginEx.war
+      #source_path: /opt/artifactory_packages/
       # Task that will be used to Launch/Create an EC2 Instance
     tasks:
 
@@ -37,18 +37,13 @@
           count: "{{count}}"
           vpc_subnet_id: subnet-0e3dde91a0167bb9c
           assign_public_ip: yes
-          #user_data: |
-          #       #!/bin/sh
-          #      sudo cd /usr/share/tomcat/webapps
-          #       sudo wget http://13.250.14.248:8081/artifactory/list/WebappJava/StrutsLoginEx.war
-          #       sudo unzip StrutsLoginEx.war
         register: ec2
 
       - name: Add the newly created EC2 instance(s) to the local host group (located inside the directory)
         local_action: lineinfile
-                      dest="/opt/ansible/envpov/inventory/hosts"
+                      dest="/opt/ansible/envpov/inventory/appserver/hosts"
                       regexp={{ item.public_ip }}
-                      insertafter="[webserver]" line={{ item.public_ip }}
+                      insertafter="[app_server]" line={{ item.public_ip }}
         with_items: '{{ ec2.instances }}'
 
       - name: Add new instance ip to a file for reference
@@ -58,11 +53,11 @@
                       insertafter=EOF line={{ item.public_ip }}
         with_items: '{{ ec2.instances }}'
 
-      - name: download artifact from artifary
-        get_url:
-           url: "{{ artifactory_url }}{{ application_artifact}}"
-           dest: "{{ source_path }}"
-        with_items: '{{ ec2.instances }}'
+      #- name: download artifact from artifary
+      #  get_url:
+      #     url: "{{ artifactory_url }}{{ application_artifact}}"
+      #     dest: "{{ source_path }}"
+      # with_items: '{{ ec2.instances }}'
 
       - name: Wait for SSH to come up
         local_action: wait_for
