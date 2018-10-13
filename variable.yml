@@ -1,0 +1,15 @@
+---
+
+instance_type: "t2.micro"
+security_group: "Wipro_SG_Public_Webserver" # Change the security group name here
+image: "ami-76144b0a" # RHEL AMI
+keypair: "wipro_devops" # This is one of my keys that i already have in AWS
+region: "ap-southeast-1" # Change the Region
+count: 1
+Machine_Name: "TomcatServer"
+ec2_url: "https://703724776639.signin.aws.amazon.com/console"
+aws_access_key: "AKIAIKLFBHHJPM574HTA"
+aws_secret_key: "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"
+grp_id: "sg-096797fc3ce901c63"
+environment: "Test_POC"
+vpc__id: "subnet-0e3dde91a0167bb9c"
