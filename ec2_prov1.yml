@@ -30,8 +30,8 @@
            instance_type: "{{ instance_type}}"
            image: "{{ image }}"
            instance_tags:
-           Name: "{{ Machine_Name }}"
-           Environment: "Test_POC"
+              Name: "{{ Machine_Name }}"
+              Environment: "Test_POC"
            wait: true
            region: "{{ region }}"
            key_name: "{{ keypair }}"
