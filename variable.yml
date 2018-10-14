@@ -8,8 +8,8 @@ region: "ap-southeast-1" # Change the Region
 count: 1
 Machine_Name: "TomcatServer"
 ec_url: "https://703724776639.signin.aws.amazon.com/console"
-aws_access_key: "AKIAIKLFBHHJPM574HTA"
-aws_secret_key: "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"
+#aws_access_key: "AKIAIKLFBHHJPM574HTA"
+#aws_secret_key: "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"
 grp_id: "sg-096797fc3ce901c63"
 environment: "Test_POC"
 vpc_id: "subnet-0e3dde91a0167bb9c"
