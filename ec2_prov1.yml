@@ -13,8 +13,9 @@
       keypair: wipro_devops # This is one of my keys that i already have in AWS
       region: ap-southeast-1 # Change the Region
       count: 1
-      Machine_Name: "{{ Machine_Name }}"
+      Machine_Name: "TomcatServer"
       ec_url: https://703724776639.signin.aws.amazon.com/console
+
       #artifactory_url: http://13.250.14.248:8081/artifactory/WebappJava/
       #  application_artifact: StrutsLoginEx.war
       #  source_path: /opt/artifactory_packages/
