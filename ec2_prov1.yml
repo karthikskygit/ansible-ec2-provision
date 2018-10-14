@@ -34,7 +34,7 @@
            Environment: "Test_POC"
            wait: true
            region: "{{ region }}"
-           keypair: "{{ keypair }}"
+           key_name: "{{ keypair }}"
            count: "{{count}}"
            vpc_subnet_id: subnet-0e3dde91a0167bb9c
            assign_public_ip: yes
