@@ -9,11 +9,12 @@
     vars:
       instance_type: t2.micro
       security_group: Wipro_SG_Public_Webserver # Change the security group name here
-      image: ami-07f0c9caec5449629  # This is an AMI i created myself
+      image: ami-76144b0a  # This is an AMI i created myself
       keypair: wipro_devops # This is one of my keys that i already have in AWS
       region: ap-southeast-1 # Change the Region
       count: 1
       Machine_Name: "{{ Machine_Name }}"
+      ec_url: https://703724776639.signin.aws.amazon.com/console
       #artifactory_url: http://13.250.14.248:8081/artifactory/WebappJava/
       #  application_artifact: StrutsLoginEx.war
       #  source_path: /opt/artifactory_packages/
